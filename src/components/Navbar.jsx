@@ -22,7 +22,7 @@ export function Navbar() {
                                 <img
                                     alt="A grinning cat"
                                     // src="src/pictures/vector-pixel-art-cat-sit.webp"
-                                    src="src/pictures/cat.gif"
+                                    src="src/assets/pictures/cat.gif"
                                 />
                             </div>
                         </div>
