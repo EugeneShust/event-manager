@@ -1,15 +1,11 @@
-import { Navbar } from './Navbar';
+import { Navbar } from './index';
 
-export const Header = () => {
+export function Header() {
     return (
-        <header className="flex flex-row align-center justify-between m-4 p-2 bg-gray-400">
-            <img className="h-10 w-20" src="../pictures/event-manager.jpg" />
-            <div
-                id="search"
-                className="flex flex-row flex-nowrap gap-4 items-center border-3 rounded-md"
-            >
+        <>
+            <div className="border-b-2 border-[#CACED5] mb-4">
                 <Navbar />
             </div>
-        </header>
+        </>
     );
-};
+}
