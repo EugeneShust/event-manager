@@ -1,4 +1,9 @@
 function updateAccessTocken(tocken) {
+    localStorage.setItem('accessToken', tocken);
 }
 
-export { updateAccessTocken };
+function getAccessToken() {
+    return localStorage.getItem('accessToken');
+}
+
+export { getAccessToken, updateAccessTocken };

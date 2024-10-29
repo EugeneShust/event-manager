@@ -1,5 +1,40 @@
-async function login(query) {}
+import { getAccessToken } from './storage';
 
-async function signUp() {}
+const API_URL = 'https://events-api-on1o.onrender.com/api/';
 
-export { login, signUp };
+const fetchWithAuth = async (url, options = {}) => {
+    const token = getAccessToken();
+
+    if (token) {
+        options.headers = {
+            ...options.headers,
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
+    }
+
+    const response = await fetch(`${API_URL}${url}`, options);
+
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+
+    return response.json();
+};
+
+const fetchWithoutAuth = async (url, options = {}) => {
+    options.headers = {
+        ...options.headers,
+        'Content-Type': 'application/json',
+    };
+
+    const response = await fetch(`${API_URL}${url}`, options);
+
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+
+    return response.json();
+};
+
+export { fetchWithAuth, fetchWithoutAuth };
