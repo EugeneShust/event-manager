@@ -1,42 +1,15 @@
 import { Link } from 'react-router-dom';
 
-export function Navbar() {
+export const Navbar = () => {
     return (
         <nav>
-            <div className="navbar bg-[#374151]">
-                <div className="flex-1">
-                    <li className="btn btn-ghost border-b-2 border-[#CACED5] text-xl">
-                        <Link to="/" className="text-xl">
-                            /Event Manager/
-                        </Link>
-                    </li>
-                </div>
-                <div className="flex-none gap-2">
-                    <div className="dropdown dropdown-end">
-                        <div
-                            tabIndex={0}
-                            role="button"
-                            className="btn btn-ghost btn-circle avatar"
-                        >
-                            <div className="w-10 rounded-full">
-                                <img
-                                    alt="A grinning cat"
-                                    // src="src/pictures/vector-pixel-art-cat-sit.webp"
-                                    src="src/pictures/cat.gif"
-                                />
-                            </div>
-                        </div>
-                        <ul
-                            tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-4 mr-4 w-16 p-2 shadow"
-                        >
-                            <li>
-                                <a>Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <ul className="flex flex-col content-around justify-around lg:flex-row lg:gap-4 border-r-2">
+                <li className="hover:bg-gray-800 hover:text-white px-4 mx-4 text-gray-900">
+                    <Link to="/" className="text-xl">
+                        Home
+                    </Link>
+                </li>
+            </ul>
         </nav>
     );
-}
+};

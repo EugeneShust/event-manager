@@ -1,11 +1,18 @@
-import { Navbar } from './index';
+import { Navbar } from './';
 
-export function Header() {
+export const Header = () => {
     return (
-        <>
-            <div className="border-b-2 border-r-2 border-l-2 border-[#CACED5] mb-4">
+        <header className="flex flex-row align-center justify-between m-4 p-2 bg-gray-400">
+            <img
+                className="h-10 w-20"
+                src="https://svgsilh.com/svg_v2/402758.svg"
+            />
+            <div
+                id="search"
+                className="flex flex-row flex-nowrap gap-4 items-center border-3 rounded-md"
+            >
                 <Navbar />
             </div>
-        </>
+        </header>
     );
-}
+};
