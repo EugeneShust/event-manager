@@ -18,8 +18,9 @@ export function Navbar() {
                         >
                             <div className="w-10 rounded-full">
                                 <img
-                                    alt="Tailwind CSS Navbar component"
-                                    src="src/pictures/vector-pixel-art-cat-sit.webp"
+                                    alt="A grinning cat"
+                                    // src="src/pictures/vector-pixel-art-cat-sit.webp"
+                                    src="src/pictures/cat.gif"
                                 />
                             </div>
                         </div>
