@@ -7,13 +7,16 @@ export const fetchWithoutAuth = async (url, options = {}) => {
         'Content-Type': 'application/json',
     };
 
-    if (options.body) console.log('Request:', url, '\nBody:', options.body);
+    console.log('Request:', url, options.body ? '\nBody:' + options.body : '');
 
     const response = await fetch(`${API_URL}${url}`, options);
 
     if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
     }
+    const result = response.json();
 
-    return response.json();
+    console.log(console.log('Response:', url, '\nBody:', result));
+
+    return result;
 };

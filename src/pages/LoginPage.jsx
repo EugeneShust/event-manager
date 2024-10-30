@@ -16,7 +16,7 @@ export const LoginPage = () => {
 
             console.log(loginInfo);
 
-            if (loginInfo.error) throw new Error(loginInfo.message);
+            if (loginInfo.error) throw new Error(loginInfo.error);
 
             login(loginInfo.token);
             //navigate('/create-event');

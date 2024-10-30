@@ -3,14 +3,14 @@
 import { fetchWithoutAuth } from '../api';
 
 async function registerUser(data) {
-    return await fetchWithoutAuth('users', {
+    return await fetchWithoutAuth('/users', {
         method: 'POST',
         body: JSON.stringify(data),
     });
 }
 
 async function loginUser(data) {
-    return await fetchWithoutAuth('auth/login', {
+    return await fetchWithoutAuth('/auth/login', {
         method: 'POST',
         body: JSON.stringify(data),
     });
