@@ -1,5 +1,5 @@
-export { Header } from './Header';
-export { Navbar } from './Navbar';
-export { MainLayout } from './MainLayout';
-export { Footer } from './Footer';
-export { Alert } from './Alert';
+export { Header } from './common/Header';
+export { Navbar } from './common/Navbar';
+export { MainLayout } from '../layouts/MainLayout';
+export { Footer } from './common/Footer';
+export { Alert } from './common/Alert';
