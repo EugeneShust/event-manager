@@ -12,6 +12,8 @@ export const fetchWithAuth = async (url, options = {}) => {
         };
     }
 
+    if (options.body) console.log('Request:', url, '\nBody:', options.body);
+
     const response = await fetch(`${API_URL}${url}`, options);
 
     if (!response.ok) {
