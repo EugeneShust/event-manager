@@ -1,42 +1,35 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LoginForm } from '../components';
+import { loginUser } from '../services';
+import { useAuth } from '../hooks';
 
 export const LoginPage = () => {
     const [error, setError] = useState('');
+    const { login } = useAuth();
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleLogin = async (data) => {
         setError('');
         try {
-            const response = await fetch(
-                'http://localhost:3001/api/auth/login',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData),
-                },
-            );
+            const loginInfo = await loginUser(data);
 
-            const data = await response.json();
+            console.log(loginInfo);
 
-            if (response.ok) {
-                localStorage.setItem('userId', data.userId);
-                localStorage.setItem('userEmail', data.email);
+            if (loginInfo.error) throw new Error(loginInfo.message);
 
-                if (data.role) {
-                    localStorage.setItem('userRole', data.role);
-                }
+            login(loginInfo.token);
+            //navigate('/create-event');
 
-                navigate('/create-event');
-            } else {
-                setError(data.message || 'Invalid email or password');
-            }
+            // localStorage.setItem('userId', data.userId);
+            // localStorage.setItem('userEmail', data.email);
+
+            // if (data.role) {
+            //     localStorage.setItem('userRole', data.role);
+            // }
         } catch (err) {
-            setError('Connection error. Please try again.');
+            console.error(err.message);
+            setError(`Connection error. Error code${err.message}`);
         }
     };
 
@@ -53,7 +46,7 @@ export const LoginPage = () => {
                                 <span>{error}</span>
                             </div>
                         )}
-                        <LoginForm onSubmit={handleSubmit} />
+                        <LoginForm onSubmit={handleLogin} />
                         <div className="text-center mt-4">
                             <Link to="/signup" className="link link-hover">
                                 Need an account? Sign up

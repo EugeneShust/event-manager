@@ -12,6 +12,7 @@ export const LoginForm = ({ onSubmit }) => {
     };
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         if (!formData.email || !formData.password) {
             //setError('Please fill in all fields');
             throw new Error('Please fill in all fields');
@@ -23,7 +24,7 @@ export const LoginForm = ({ onSubmit }) => {
         }
 
         // Pass data to LoginPage
-        onSubmit({ formData });
+        onSubmit({ email: formData.email, password: formData.password });
     };
 
     return (
