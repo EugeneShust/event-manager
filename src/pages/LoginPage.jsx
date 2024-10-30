@@ -1,32 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { LoginForm } from '../components';
 
-const LoginPage = () => {
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-    });
+export const LoginPage = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
-
-    const validateEmail = (email) => {
-        return email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-
-        if (!formData.email || !formData.password) {
-            setError('Please fill in all fields');
-            return;
-        }
-
-        if (!validateEmail(formData.email)) {
-            setError('No valid email address');
-            return;
-        }
-
         try {
             const response = await fetch(
                 'http://localhost:3001/api/auth/login',
@@ -71,47 +53,7 @@ const LoginPage = () => {
                                 <span>{error}</span>
                             </div>
                         )}
-                        <form onSubmit={handleSubmit}>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Email</span>
-                                </label>
-                                <input
-                                    type="email"
-                                    placeholder="email"
-                                    className="input input-bordered"
-                                    value={formData.email}
-                                    onChange={(e) =>
-                                        setFormData({
-                                            ...formData,
-                                            email: e.target.value,
-                                        })
-                                    }
-                                />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Password</span>
-                                </label>
-                                <input
-                                    type="password"
-                                    placeholder="password"
-                                    className="input input-bordered"
-                                    value={formData.password}
-                                    onChange={(e) =>
-                                        setFormData({
-                                            ...formData,
-                                            password: e.target.value,
-                                        })
-                                    }
-                                />
-                            </div>
-                            <div className="form-control mt-6">
-                                <button className="btn btn-primary">
-                                    Login
-                                </button>
-                            </div>
-                        </form>
+                        <LoginForm onSubmit={handleSubmit} />
                         <div className="text-center mt-4">
                             <Link to="/signup" className="link link-hover">
                                 Need an account? Sign up
@@ -123,5 +65,3 @@ const LoginPage = () => {
         </div>
     );
 };
-
-export default LoginPage;
