@@ -5,3 +5,4 @@ export { Footer } from './common/Footer';
 export { Alert } from './common/Alert';
 
 export { LoginForm } from './auth/LoginForm';
+export { SignUpForm } from './auth/SignUpForm';
