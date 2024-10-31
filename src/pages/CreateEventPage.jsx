@@ -1,5 +1,5 @@
 import React from 'react';
-import EventForm from '../forms/EventForm';
+import EventForm from '../components/forms/EventForm.jsx';
 
 const CreateEventPage = () => {
   const handleFormSubmit = (formData) => {
@@ -15,4 +15,4 @@ const CreateEventPage = () => {
   );
 };
 
-export default CreateEventPage;
+export { CreateEventPage };
