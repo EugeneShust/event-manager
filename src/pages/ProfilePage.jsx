@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { fetchProfile } from '../modules';
+import { getProfile } from '../services';
 
-export const Profile = () => {
+export const ProfilePage = () => {
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -9,7 +9,7 @@ export const Profile = () => {
     useEffect(() => {
         const getData = async () => {
             try {
-                const data = await fetchProfile();
+                const data = await getProfile();
                 console.log('fetchProfile', data);
                 setProfile(data);
             } catch (err) {
