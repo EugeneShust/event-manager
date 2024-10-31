@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { MainLayout } from './components';
 import { HomePage, LoginPage, SignUpPage } from './pages';
 import { AuthProvider } from './contexts';
+import { CreateEventPage } from './pages/CreateEventPage';
 
 const router = createBrowserRouter([
   {
@@ -31,11 +32,11 @@ const router = createBrowserRouter([
       {
         path: '/signin',
         element: <SignInPage />,
-      },
+      },*/
       {
         path: '/create-event',
         element: <CreateEventPage />,
-      },*/
+      },
     ],
   },
 ]);
