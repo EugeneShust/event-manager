@@ -1,6 +1,6 @@
 // Service Layer: AuthService manages authentication-related API requests.
 
-import { fetchWithoutAuth } from '../api';
+import { fetchWithoutAuth, fetchWithAuth } from '../api';
 
 async function registerUser(data) {
     return await fetchWithoutAuth('/users', {
@@ -16,4 +16,8 @@ async function loginUser(data) {
     });
 }
 
-export { registerUser, loginUser };
+async function getProfile() {
+    return await fetchWithAuth('/auth/profile');
+}
+
+export { registerUser, loginUser, getProfile };
