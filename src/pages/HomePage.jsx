@@ -2,11 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '../components/common/Button';
 import { getAllEvents } from '../services';
 import { Event } from '../components';
+import { useNavigate } from 'react-router-dom';
 
 export function HomePage() {
     const [events, setEvents] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
+    function handleButton() {
+        navigate('/create-event');
+    }
 
     useEffect(() => {
         const getData = async () => {
@@ -32,6 +38,7 @@ export function HomePage() {
         <>
             <div className="flex flex-row align-baseline justify-end">
                 <Button
+                    onClick={handleButton}
                     buttonLabel={'Create new event'}
                     buttonStyle={
                         'border-2 border-[#CACED5] p-2 rounded-lg bg-[#374151]'
