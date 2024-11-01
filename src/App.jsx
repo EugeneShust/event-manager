@@ -17,22 +17,20 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <HomePage />,
       },
-      //errorElement: <ErrorPage />,
-      /*,
       {
-        path: '/events/:id', 
-        element: <EventDetailsPage />,
+        path: '/login',
+        element: <LoginPage />,
       },
       {
         path: '/signup',
         element: <SignUpPage />,
       },
       {
-        path: '/signin',
-        element: <SignInPage />,
-      },*/
+        path: '/profile',
+        element: <ProfilePage />,
+      },
       {
         path: '/create-event',
         element: <CreateEventPage />,
