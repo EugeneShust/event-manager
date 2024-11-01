@@ -1,24 +1,31 @@
-// Facade pattern: Provides a simplified interface to the complex logic for making HTTP requests.
+import { API_URL } from '../config';
 import { getToken } from '../utils';
+// Facade pattern: Provides a simplified interface to the complex logic for making HTTP requests.
 
 export const fetchWithAuth = async (url, options = {}) => {
     const token = getToken();
 
-    if (token) {
-        options.headers = {
-            ...options.headers,
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-        };
-    }
+    options.headers = {
+        ...options.headers,
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+    };
 
     if (options.body) console.log('Request:', url, '\nBody:', options.body);
 
     const response = await fetch(`${API_URL}${url}`, options);
 
     if (!response.ok) {
-        throw new Error('Network response was not ok');
+        const errorText = await response.text();
+        console.error(
+            `Error: ${response.status} ${response.statusText}`,
+            errorText,
+        );
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
     }
+    const result = await response.json();
 
-    return response.json();
+    console.log('Response:', url, '\nBody:', result);
+
+    return result;
 };

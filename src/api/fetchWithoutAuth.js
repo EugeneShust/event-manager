@@ -12,11 +12,18 @@ export const fetchWithoutAuth = async (url, options = {}) => {
     const response = await fetch(`${API_URL}${url}`, options);
 
     if (!response.ok) {
+        const errorText = await response.text();
+
+        console.error(
+            `Error: ${response.status} ${response.statusText}`,
+            errorText,
+        );
+
         throw new Error(`Error: ${response.status} ${response.statusText}`);
     }
-    const result = response.json();
+    const result = await response.json();
 
-    console.log(console.log('Response:', url, '\nBody:', result));
+    console.log('Response:', url, '\nBody:', result);
 
     return result;
 };
