@@ -7,7 +7,6 @@ import { fetchWithAuth, fetchWithoutAuth } from '../api/index';
 async function getAllEvents() {
     return await fetchWithoutAuth('/events', {
         method: 'GET',
-        body: JSON.stringify({}),
     });
 }
 
@@ -16,7 +15,6 @@ async function getAllEvents() {
 async function getSingleEvent(eventId) {
     return await fetchWithoutAuth(`/events/${eventId}`, {
         method: 'GET',
-        body: JSON.stringify({}),
     });
 }
 
@@ -25,7 +23,6 @@ async function getSingleEvent(eventId) {
 async function getFutureEvents() {
     return await fetchWithoutAuth('/upcoming', {
         method: 'GET',
-        body: JSON.stringify({}),
     });
 }
 
