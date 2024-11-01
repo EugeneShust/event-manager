@@ -1,6 +1,5 @@
 // Service Layer: EventService manages API requests for events.
 
-import { date } from '../utils';
 import { fetchWithAuth, fetchWithoutAuth } from '../api/index';
 
 // Get all events
@@ -14,9 +13,7 @@ async function getAllEvents() {
 
 // Get event by id
 
-const eventId = integer;
-
-async function getSingleEvent() {
+async function getSingleEvent(eventId) {
     return await fetchWithoutAuth(`/events/${eventId}`, {
         method: 'GET',
         body: JSON.stringify({}),
@@ -42,7 +39,7 @@ async function createNewEvent(eventData) {
 }
 // Update existing event
 
-async function updateEvent() {
+async function updateEvent(eventData) {
     return await fetchWithAuth(`/events/${eventId}`, {
         method: 'PUT',
         body: JSON.stringify(eventData),
@@ -51,7 +48,7 @@ async function updateEvent() {
 
 // Delete event
 
-async function deleteEvent() {
+async function deleteEvent(eventId) {
     return await fetchWithAuth(`/events/${eventId}`, { method: 'DELETE' });
 }
 
