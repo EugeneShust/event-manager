@@ -20,4 +20,11 @@ async function getProfile() {
     return await fetchWithAuth('/auth/profile');
 }
 
-export { registerUser, loginUser, getProfile };
+async function updateProfile(id, data) {
+    return await fetchWithAuth(`/users/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+    });
+}
+
+export { registerUser, loginUser, getProfile, updateProfile };
