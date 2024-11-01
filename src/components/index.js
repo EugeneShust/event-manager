@@ -6,3 +6,4 @@ export { Alert } from './common/Alert';
 export { Event } from './events/Event';
 export { LoginForm } from './auth/LoginForm';
 export { SignUpForm } from './auth/SignUpForm';
+export { ProfileForm } from './forms/ProfileForm';

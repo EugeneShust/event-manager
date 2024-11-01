@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getProfile } from '../services';
+import { ProfileForm } from '../components';
+import { updateProfile } from '../services/authService';
 
 export const ProfilePage = () => {
     const [profile, setProfile] = useState({});
+    const [editMode, setEditMode] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -25,6 +28,24 @@ export const ProfilePage = () => {
             console.log('Cleanup function ran');
         };
     }, []);
+
+    async function handleSubmit(data) {
+        setError('');
+        try {
+            console.log('data:', data);
+
+            const updatedData = await updateProfile(profile.id, data);
+
+            console.log('updatedData:', updatedData);
+
+            setProfile(updatedData);
+            setEditMode(false);
+
+            if (updatedData.error) throw new Error(updatedData.error);
+        } catch (err) {
+            setError('Connection error. Please try again.');
+        }
+    }
 
     if (loading)
         return (
@@ -52,15 +73,24 @@ export const ProfilePage = () => {
                         <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
                     </div>
                 </div>
-                <div>
-                    <h1 className="text-5xl font-bold">{profile.name}</h1>
-                    <p className="py-6">{profile.id}</p>
-                    <p className="py-6">{profile.email}</p>
-                    <p className="py-6">{profile.isActive}</p>
-                    <p className="py-6">{profile.createdAt}</p>
-                    <p className="py-6">{profile.updatedAt}</p>
-                    <button className="btn btn-primary">Edit profile</button>
-                </div>
+                {!editMode ? (
+                    <div>
+                        <h1 className="text-5xl font-bold">{profile.name}</h1>
+                        <p className="py-6">{profile.id}</p>
+                        <p className="py-6">{profile.email}</p>
+                        <p className="py-6">{profile.isActive}</p>
+                        <p className="py-6">{profile.createdAt}</p>
+                        <p className="py-6">{profile.updatedAt}</p>
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => setEditMode(true)}
+                        >
+                            Edit profile
+                        </button>
+                    </div>
+                ) : (
+                    <ProfileForm data={profile} onSubmit={handleSubmit} />
+                )}
             </div>
         </div>
     );
