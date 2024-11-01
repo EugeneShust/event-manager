@@ -18,8 +18,8 @@ export const LoginPage = () => {
 
             if (loginInfo.error) throw new Error(loginInfo.error);
 
-            login(loginInfo.token);
-            //navigate('/create-event');
+            login(loginInfo);
+            navigate('/');
 
             // localStorage.setItem('userId', data.userId);
             // localStorage.setItem('userEmail', data.email);

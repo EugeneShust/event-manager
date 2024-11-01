@@ -2,7 +2,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { MainLayout } from './components';
-import { HomePage, LoginPage, SignUpPage } from './pages';
+import { HomePage, LoginPage, SignUpPage, ProfilePage } from './pages';
 import { AuthProvider } from './contexts';
 
 const router = createBrowserRouter([
@@ -18,23 +18,27 @@ const router = createBrowserRouter([
                 index: true,
                 element: <HomePage />,
             },
+            {
+                path: '/login',
+                element: <LoginPage />,
+            },
+            {
+                path: '/signup',
+                element: <SignUpPage />,
+            },
+            {
+                path: '/profile',
+                element: <ProfilePage />,
+            },
             //errorElement: <ErrorPage />,
             /*,
             {
-              path: '/events/:id', 
-              element: <EventDetailsPage />,
+                path: '/events/:id', 
+                element: <EventDetailsPage />,
             },
             {
-              path: '/signup',
-              element: <SignUpPage />,
-            },
-            {
-              path: '/signin',
-              element: <SignInPage />,
-            },
-            {
-              path: '/create-event',
-              element: <CreateEventPage />,
+                path: '/create-event',
+                element: <CreateEventPage />,
             },*/
         ],
     },

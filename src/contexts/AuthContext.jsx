@@ -1,26 +1,24 @@
 // Context API pattern: Provides global state and functions for authentication.
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, { createContext, useState } from 'react';
 
 // Initialize Context
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [accessToken, setAccessToken] = useState(
-        () => localStorage.getItem('accessToken') || null,
-    );
+    const [user, setUser] = useState(null);
 
-    const login = (token) => {
-        setAccessToken(token);
-        localStorage.setItem('accessToken', JSON.stringify(token));
+    const login = (loginInfo) => {
+        setUser(loginInfo.user);
+        localStorage.setItem('accessToken', JSON.stringify(loginInfo.token));
     };
 
     const logout = () => {
-        setAccessToken(null);
+        setUser(null);
         localStorage.removeItem('accessToken');
     };
 
     return (
-        <AuthContext.Provider value={{ accessToken, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

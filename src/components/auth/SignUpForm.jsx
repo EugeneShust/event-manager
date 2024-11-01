@@ -15,15 +15,19 @@ export const SignUpForm = ({ onSubmit }) => {
         e.preventDefault();
 
         if (!formData.name || !formData.email || !formData.password) {
-            setError('Please fill in all fields');
+            throw new Error('Please fill in all fields');
             return;
         }
 
         if (!validateEmail(formData.email)) {
-            setError('No valid email address');
+            throw new Error('No valid email address');
             return;
         }
-        onSubmit({ email: formData.email, password: formData.password });
+        onSubmit({
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+        });
     };
 
     return (
